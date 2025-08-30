@@ -563,6 +563,179 @@ The platform includes comprehensive testing:
   ---
 
 
+### WebSocket Configuration
+The platform automatically:
+1. Connects to Hyperliquid mainnet WebSocket for real-time data
+2. Falls back to testnet WebSocket if mainnet fails (after 3 attempts)
+3. Uses REST API calls if both WebSocket connections fail
+4. Provides demo data for development when all APIs are unavailable
+
+## 🔗 API Documentation
+
+### Core Endpoints
+
+#### Price Data
+```
+GET /api/prices?token=SOL
+- Returns real-time price data from WebSocket streams or REST APIs
+- Includes Jupiter spot prices and Hyperliquid perpetual data
+- Response includes funding rates, spreads, and timestamp info
+
+GET /api/prices/historical?token=SOL&hours=24
+- Historical price data for charting and analysis
+- Time-series data with configurable time ranges
+```
+
+#### Arbitrage Opportunities
+```
+GET /api/opportunities
+- Live arbitrage opportunities with standardized color coding
+- Includes slippage estimates and profitability analysis
+- Real-time updates from WebSocket price feeds
+
+GET /api/arbitrage/details?token=SOL
+- Detailed arbitrage analysis for specific tokens
+- Risk metrics, execution estimates, and market impact
+```
+
+#### Bridge Analysis
+```
+GET /api/bridge/simulate
+- Monte Carlo simulation with execution templates
+- Risk analysis including VaR and Sharpe ratios
+- Latency modeling and success probability
+
+GET /api/bridge/unified-execution
+- One-click analysis of top 5 opportunities
+- Simplified UX signals for quick decision making
+
+GET /api/bridge/analytics
+- Comprehensive analytics dashboard
+- Volume, latency, and performance metrics with pandas
+```
+
+#### WebSocket Status
+```
+GET /api/websocket/status
+- WebSocket connection health monitoring
+- Network status (mainnet/testnet/offline)
+- Connection quality and latency metrics
+```
+
+## 🌊 WebSocket Architecture
+
+### Connection Management
+The platform uses a sophisticated WebSocket architecture:
+
+#### Primary Connection (Mainnet)
+- **URL**: `wss://api.hyperliquid.xyz/ws`
+- **Purpose**: Real-time price feeds from live trading
+- **Data**: Mark prices, index prices, funding rates, volume
+- **Latency**: <100ms for price updates
+- **Reliability**: Production-grade with 99.9% uptime
+
+#### Fallback Connection (Testnet)
+- **URL**: `wss://api.hyperliquid-testnet.xyz/ws`
+- **Purpose**: Backup when mainnet is unavailable
+- **Trigger**: After 3 failed mainnet connection attempts
+- **Data**: Same structure as mainnet with test data
+- **Use Case**: Development and emergency fallback
+
+#### Connection Features
+- **Auto-reconnection**: Exponential backoff with intelligent retry logic
+- **Health Monitoring**: Ping/pong with 20s intervals and 10s timeouts
+- **Data Subscriptions**: All market data, trades, order book, and metadata
+- **Thread Safety**: Dedicated background thread with proper event loop management
+- **Error Handling**: Graceful degradation to REST APIs on connection failure
+
+### Data Processing Pipeline
+1. **WebSocket Receives**: Real-time market data from Hyperliquid
+2. **Message Processing**: Parses price updates, funding rates, volume data
+3. **Cache Integration**: Stores in Redis with 1-second TTL for ultra-low latency
+4. **Arbitrage Analysis**: Real-time spread calculation and opportunity detection
+5. **Frontend Updates**: Live dashboard updates without page refresh
+
+## 🎯 Trading Strategies
+
+### Supported Arbitrage Types
+- **Spot-Perpetual Arbitrage**: Long spot, short perpetual (or vice versa)
+- **Funding Rate Arbitrage**: Exploit funding rate differentials
+- **Cross-Exchange Arbitrage**: Jupiter DEX vs Hyperliquid perpetuals
+- **Statistical Arbitrage**: Mean reversion and trend following
+
+### Risk Management
+- **Position Sizing**: Dynamic sizing based on volatility and available capital
+- **Stop Losses**: Automatic position closure on adverse price movements
+- **Funding Cost Analysis**: Real-time funding rate impact calculations
+- **Slippage Protection**: Pre-trade slippage estimation with standardized alerts
+
+### Execution Templates
+Pre-configured strategies optimized for different market conditions:
+
+#### SOL Scalping (High Frequency)
+- **Target Spread**: 15+ basis points
+- **Position Size**: $500-2000
+- **Leverage**: 3x (medium-high risk)
+- **Execution Time**: <2 seconds
+- **Use Case**: Quick profits during volatility spikes
+
+#### ETH Conservative (Risk-Managed)
+- **Target Spread**: 25+ basis points
+- **Position Size**: $1000-5000
+- **Leverage**: 2x (low-medium risk)
+- **Execution Time**: <4 seconds
+- **Use Case**: Steady returns with capital preservation
+
+#### BTC Large Size (Institutional)
+- **Target Spread**: 35+ basis points
+- **Position Size**: $5000-25000
+- **Leverage**: 1.5x (low risk)
+- **Execution Time**: <6 seconds
+- **Use Case**: High-volume institutional arbitrage
+
+## 📊 Analytics & Monitoring
+
+### Performance Metrics
+- **Success Rate**: Percentage of profitable arbitrage executions
+- **Average Spread**: Historical spread analysis with trend detection
+- **Execution Latency**: WebSocket vs REST API performance comparison
+- **Volume Analysis**: Total, viable, and average trade size metrics
+- **Profit Tracking**: Daily, weekly, and monthly P&L analysis
+
+### Risk Analytics
+- **Value-at-Risk (VaR)**: 95th percentile risk assessment
+- **Sharpe Ratio**: Risk-adjusted returns calculation
+- **Maximum Drawdown**: Worst-case scenario analysis
+- **Funding Rate Impact**: Cost analysis for perpetual positions
+- **Correlation Analysis**: Cross-asset correlation and portfolio effects
+
+### System Monitoring
+- **WebSocket Health**: Connection status, latency, message throughput
+- **API Performance**: Response times, error rates, rate limiting status
+- **Cache Performance**: Hit rates, TTL efficiency, memory usage
+- **Database Performance**: Query times, connection pooling, storage metrics
+
+## 🔒 Security & Reliability
+
+### Data Security
+- **Environment Variables**: Secure configuration management
+- **API Key Protection**: No hardcoded credentials in source code
+- **Session Management**: Secure Flask session handling
+- **Input Validation**: Comprehensive request validation and sanitization
+
+### Operational Reliability
+- **Multi-layered Fallbacks**: WebSocket → REST API → External APIs → Demo data
+- **Error Handling**: Comprehensive exception handling with graceful degradation
+- **Logging**: Structured logging with daily rotation and performance monitoring
+- **Health Checks**: Automated service health monitoring and alerting
+
+### Performance Optimization
+- **Caching Strategy**: Redis with intelligent TTL management
+- **Connection Pooling**: Efficient database and API connection management
+- **Async Processing**: Background tasks with APScheduler for non-blocking operations
+- **Resource Management**: Memory-efficient data structures and garbage collection
+
+
   
 - **Demo scripts** showing real-world usage examples
 
