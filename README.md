@@ -395,6 +395,7 @@ The platform includes sophisticated slippage estimation using square-root market
 ```
 slippage = k × sqrt(trade_size / orderbook_depth)
 ```
+- Slippage equals a constant k multiplied by the square root of trade size divided by orderbook depth 
 - **k = 0.7**: Impact coefficient calibrated for crypto markets
 - **Realistic scaling**: 31 bps for $1k vs 313 bps for $100k SOL trades
 - **Token-specific depth**: Different liquidity assumptions per asset
