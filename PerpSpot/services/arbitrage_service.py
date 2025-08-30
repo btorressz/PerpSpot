@@ -362,7 +362,7 @@ class ArbitrageService:
             'BONK': 0.00002,
             'ORCA': 1.50,
             'HL': 44.00,
-            'USDC': 1.00,
+            'USDC': 0.99,
             'USDT': 1.00
         }
         
@@ -405,7 +405,7 @@ class ArbitrageService:
             if token in spot_prices and 'jupiter' in spot_prices[token]:
                 spot_price = spot_prices[token]['jupiter'].get('spot_price', 0)
             else:
-                base_prices = {'SOL': 150.00, 'ETH': 3500.00, 'BTC': 100000.00, 'JUP': 0.40, 'BONK': 0.00002, 'ORCA': 1.50, 'HL': 44.00, 'USDC': 1.00}
+                base_prices = {'SOL': 150.00, 'ETH': 3500.00, 'BTC': 100000.00, 'JUP': 0.40, 'BONK': 0.00002, 'ORCA': 1.50, 'HL': 44.00, 'USDC': 0.99}
                 spot_price = base_prices.get(token, 100.00)
             
             if spot_price > 0:
