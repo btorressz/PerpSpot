@@ -2,7 +2,7 @@
 
 ## Overview 
 
-A sophisticated cryptocurrency perpetuals arbitrage trading platform called "Perp Spot Crypto Arbitrage" that bridges Jupiter spot trading with Hyperliquid perpetual futures. Features real-time WebSocket data feeds with mainnet/testnet fallback, arbitrage opportunity detection, interactive dashboard with Chart.js visualization, execution latency modeling, Monte Carlo simulation modeling, advanced slippage management with standardized color-coded visualization (Green ≤50bps, Orange 50-200bps, Red >200bps), comprehensive analytics including Z-score spread detection and VaR calculations, Redis-backed caching, trading simulation capabilities, and dynamic token discovery supporting around 10 cryptocurrency pairs.(plan to add 100+ in next version)
+A sophisticated cryptocurrency perpetuals arbitrage trading platform called "Perp Spot Crypto Arbitrage" that bridges Jupiter spot trading with Hyperliquid perpetual futures. Features real-time WebSocket data feeds with mainnet/testnet fallback, arbitrage opportunity detection, interactive dashboard with Chart.js visualization, execution latency modeling, Monte Carlo simulation modeling, advanced slippage management with standardized color-coded visualization (Green ≤50bps, Orange 50-200bps, Red >200bps), comprehensive analytics including Z-score spread detection and VaR calculations, Redis-backed caching, trading simulation capabilities, and dynamic token discovery supporting multiple cryptocurrency pairs.(plan to add 100+ in next version)
 
 **NOTE** I am still reviewing and developing this project feedback is welcome, this is the first version it won't be perfect, but it runs.
 -The goal of this projct is to bridge juputer spot trading with hyperliquid perpetuals futures 
