@@ -737,7 +737,15 @@ Pre-configured strategies optimized for different market conditions:
 - **Async Processing**: Background tasks with APScheduler for non-blocking operations
 - **Resource Management**: Memory-efficient data structures and garbage collection
 
+---
 
+## 🚀 Future Enhancements
+
+### Planned Features
+- **Automated Trading**: Direct API integration for automated arbitrage execution
+- **Advanced Strategies**: Multi-leg arbitrage and statistical arbitrage models
+- **Machine Learning**: Predictive models for spread forecasting and execution timing
+- **Portfolio Management**: Multi-asset portfolio optimization and risk management
   
 - **Demo scripts** showing real-world usage examples
 
