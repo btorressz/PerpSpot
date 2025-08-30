@@ -359,5 +359,146 @@ Custom styling:
 - **Responsive layout** with mobile-first responsive design approach
 - **Slippage indicators** with color-coded basis points (green/orange/red)
 
+---
+
+## 🎯 Interactive Slippage Management System
+
+The platform features a comprehensive slippage management system designed for professional traders:
+
+### User-Configurable Controls
+- **Tolerance Settings**: Adjustable slippage tolerance from 50-500 basis points
+- **Real-time Estimates**: Live slippage calculations based on current trade size
+- **Visual Progress Bar**: Color-coded slippage indicator (green/yellow/red)
+- **Advanced Settings**: Expandable controls for experienced traders
+- **Smart Alerts**: Automatic notifications when opportunities exceed your tolerance
+
+### Interactive Visualization
+- **Trade Size Impact Chart**: Shows how slippage changes from $100 to $50K trades
+- **Platform Comparison**: Visual comparison of Jupiter vs Hyperliquid slippage curves
+- **Tolerance Reference Line**: Your current tolerance displayed as a reference line
+- **Real-time Updates**: Chart updates dynamically when you adjust tolerance settings
+
+### Professional Features
+- **Expected Slippage Display**: Shows estimated slippage for your current trade size
+- **Opportunity Monitoring**: Scans all opportunities and alerts on high-slippage trades
+- **Toggle Controls**: Easy enable/disable of alerts and advanced features
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+
+## 🌉 Bridge Arbitrage System
+
+### Slippage & Market Impact Modeling
+The platform includes sophisticated slippage estimation using square-root market impact models with full user control:
+
+#### **Square-Root Impact Formula**
+```
+slippage = k × sqrt(trade_size / orderbook_depth)
+```
+- **k = 0.7**: Impact coefficient calibrated for crypto markets
+- **Realistic scaling**: 31 bps for $1k vs 313 bps for $100k SOL trades
+- **Token-specific depth**: Different liquidity assumptions per asset
+
+#### **Almgren-Chriss Style Estimation**
+- **Temporary Impact**: a × (size/depth)^b with a=0.3, b=0.6
+- **Permanent Impact**: Separate modeling for lasting market effects
+- **Execution Cost**: Combined temporary + permanent impact estimation
+
+### Execution Templates
+Three pre-configured execution templates optimized for different trading scenarios:
+
+#### **SOL Scalping Template**
+- **Strategy**: High-frequency, low-latency arbitrage for SOL token
+- **Position Size**: $500-2000 optimal range
+- **Target Spread**: 15+ basis points
+- **Risk Profile**: Medium-high (leverage: 3x)
+- **Execution Time**: <2 seconds average
+- **Use Case**: Quick scalps during high volatility periods
+
+#### **ETH Conservative Template**  
+- **Strategy**: Risk-managed approach for ETH arbitrage
+- **Position Size**: $1000-5000 optimal range
+- **Target Spread**: 25+ basis points
+- **Risk Profile**: Low-medium (leverage: 2x)
+- **Execution Time**: <4 seconds average
+- **Use Case**: Steady profits with lower risk exposure
+
+#### **BTC Large Size Template**
+- **Strategy**: Optimized for large volume BTC trades
+- **Position Size**: $5000-25000 optimal range
+- **Target Spread**: 35+ basis points
+- **Risk Profile**: Low (leverage: 1.5x)
+- **Execution Time**: <6 seconds average
+- **Use Case**: Institutional-level arbitrage with capital efficiency
+
+### Monte Carlo Simulation Features
+- **Latency modeling** with statistical analysis of execution delays
+- **95th percentile calculations** for conservative risk assessment
+- **Success probability** with confidence intervals for trade execution
+- **Funding rate impact** with dynamic adjustment for perpetual costs
+- **Market impact analysis** with slippage estimation based on orderbook depth
+
+### Advanced Analytics Dashboard
+- **Volume analysis** with total, viable, and average trade size breakdown
+- **Latency analysis** with execution time distribution and percentile analysis
+- **Token performance** with individual asset profitability and success rate tracking
+- **Spread analysis** with historical patterns and viable thresholds
+- **Risk metrics** including Value-at-Risk, Sharpe ratios, and funding rate impacts
+
+## 🔧 Token Support
+
+The platform supports 8 major cryptocurrencies with full bridge arbitrage capabilities:
+
+| Token | Name | Jupiter Mint Address | CoinGecko ID | Hyperliquid Support | Bridge Ready |
+|-------|------|---------------------|--------------|-------------------|--------------|
+| SOL | Solana | So11111111111111111111111111111111111111112 | solana | ✅ | ✅ |
+| ETH | Ethereum | - | ethereum | ✅ | ✅ |
+| BTC | Bitcoin | - | bitcoin | ✅ | ✅ |
+| JUP | Jupiter | JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN | jupiter-exchange-solana | ❌ | ✅ |
+| BONK | Bonk | DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263 | bonk | ❌ | ✅ |
+| ORCA | Orca | orcaEKTdK7LKz57vaAYr9QeNsVEPfiu6QeMU1kektZE | orca | ❌ | ✅ |
+| USDC | USD Coin | EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v | usd-coin | ❌ | ✅ |
+| USDT | Tether | Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB | tether | ❌ | ✅ |
+| HL | Hyperliquid | 4Ae83YgsBcwJTMx3am3gi5Ppnp1KwmunznWAoYeqgDgL | hyperliquid | ✅ | ✅ |
+
+**Bridge Ready**: All tokens support full bridge arbitrage simulation with execution templates and slippage modeling.
+
+## 🏗️ Architecture
+
+### Data Flow
+
+#### Real-time WebSocket Pipeline
+1. **WebSocket Listener** connects to Hyperliquid mainnet (`wss://api.hyperliquid.xyz/ws`)
+2. **Live Data Streaming** receives real-time price updates, funding rates, and volume data
+3. **Automatic Failover** switches to testnet (`wss://api.hyperliquid-testnet.xyz/ws`) if mainnet fails
+4. **Cache Integration** stores WebSocket data with 1-second TTL for ultra-low latency
+5. **Background Scheduler** supplements with REST API calls every 10 seconds for missing data
+
+#### Comprehensive Fallback Chain
+1. **Primary**: Hyperliquid WebSocket (Mainnet) - Real-time streaming
+2. **Secondary**: Hyperliquid WebSocket (Testnet) - Fallback streaming
+3. **Tertiary**: Hyperliquid REST API - Traditional API calls
+4. **Quaternary**: Jupiter Service - Solana DEX spot prices
+5. **Fallback**: CoinGecko/Kraken APIs - External price sources
+6. **Demo Mode**: Realistic demo data for testing and development
+
+#### Processing Pipeline
+1. **Arbitrage Service** coordinates real-time price updates from WebSocket streams
+2. **Slippage Model** calculates market impact estimates with standardized color coding
+3. **Analytics Service** processes data with Z-score analysis and VaR calculations
+4. **Cache Service** stores data with intelligent TTL management (1s for WebSocket, 5-7s for REST)
+5. **Frontend** receives live updates via WebSocket integration and API polling
+7. **Database** stores historical price data and arbitrage opportunities
+
+### Fallback Strategy
+1. **Primary**: Jupiter API for spot prices, Hyperliquid SDK for perpetual prices
+2. **Secondary**: CoinGecko API for all token prices with comprehensive mapping
+3. **Tertiary**: Kraken API for major token pairs
+4. **Demo Mode**: Generated realistic price data when all APIs fail
+
+### Error Handling
+- **Retry logic** with automatic retries and exponential backoff
+- **Rate limiting** respecting API limits with intelligent delays
+- **Graceful degradation** falling back to demo data to maintain functionality
+- **Comprehensive logging** with detailed error logging for debugging
+- **Service health monitoring** with status tracking for all external services
 
 ---
