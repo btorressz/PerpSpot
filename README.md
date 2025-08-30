@@ -16,7 +16,7 @@ A sophisticated cryptocurrency perpetuals arbitrage trading platform called "Per
 - **Real-time WebSocket Streaming**: Live price feeds with mainnet (`wss://api.hyperliquid.xyz/ws`) as primary and testnet (`wss://api.hyperliquid-testnet.xyz/ws`) as fallback
 - **Arbitrage Detection**: Automated detection of profitable trading opportunities between spot and perpetual markets with Z-score spread analysis
 - **Cross-Protocol Bridge**: Seamless execution modeling between Jupiter spot and Hyperliquid perpetuals with Monte Carlo simulation and VaR calculations
-- **Dynamic Token Discovery**: Supports 100+ cryptocurrency pairs with automatic token discovery and validation
+- **Dynamic Token Discovery**: Supports multiple cryptocurrency pairs with automatic token discovery and validation
 - **Standardized Slippage Visualization**: Color-coded system (Green ≤50bps, Orange 50-200bps, Red >200bps) applied consistently across all UI elements
 - **Interactive Dashboard**: Real-time Chart.js visualizations with WebSocket-powered live updates
 - **Execution Templates**: Pre-configured strategies (SOL Scalping, ETH Conservative, BTC Large Size) with Monte Carlo risk modeling
