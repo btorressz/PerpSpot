@@ -85,7 +85,7 @@ Database models using SQLAlchemy ORM:
 - **Opportunity detection** with configurable minimum spread thresholds (default: 30 bps)
 - **Smart Fallback Chain**: WebSocket → REST API → Fallback APIs → Demo data
 - **Threading safety** with locks for concurrent operations and WebSocket integration
-- **Dynamic Token Support**: Expandable token list supporting 100+ cryptocurrency pairs
+- **Dynamic Token Support**: Expandable token list supporting multiple cryptocurrency pairs
 - **Key Methods**:
   - `enable_realtime_streaming()`: Initializes WebSocket streaming for real-time data
   - `update_all_prices()`: Coordinates price updates prioritizing WebSocket data
