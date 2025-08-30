@@ -502,3 +502,67 @@ The platform supports 8 major cryptocurrencies with full bridge arbitrage capabi
 - **Service health monitoring** with status tracking for all external services
 
 ---
+
+
+## 📊 Demo Mode
+
+When external APIs are unavailable, the platform automatically switches to demo mode:
+- **Realistic prices** based on current market values with small variations
+- **Arbitrage opportunities** with generated spreads to demonstrate platform functionality
+- **Full functionality** including slippage calculations and bridge simulation
+- **Slippage modeling** with realistic impact estimates for different trade sizes
+
+## 🎛️ Slippage Control Features
+
+### Interactive Controls
+- **Range Slider**: Smooth adjustment of slippage tolerance from 50-500 bps
+- **Live Feedback**: Real-time display of current tolerance setting
+- **Expected Slippage**: Shows estimated slippage for your current trade size
+- **Progress Visualization**: Color-coded progress bar showing slippage relative to tolerance
+- **Advanced Toggle**: Expandable section with additional controls for power users
+
+### Smart Warning System
+- **Opportunity Scanning**: Automatically monitors all opportunities in real-time
+- **Threshold Alerts**: Alerts when trades exceed your configured tolerance
+- **Count Display**: Shows number of opportunities above your tolerance
+- **Toggle Control**: Easy enable/disable of alert notifications
+- **Visual Indicators**: Clear color coding throughout the interface
+
+### Integration Benefits
+- **Seamless UX**: Slippage controls integrate naturally with existing trading interface
+- **Real-time API**: Backend `/api/slippage-estimate` endpoint for live calculations  
+- **Chart Integration**: Dedicated slippage visualization chart with platform comparison
+- **Mobile Responsive**: Full functionality on all device sizes
+- **Professional Styling**: Clean, modern design matching platform aesthetics
+
+## 🔄 Real-time Updates
+
+The platform provides real-time updates through:
+- **Backend polling** with price updates every 10 seconds via APScheduler
+- **Frontend polling** with dashboard updates every 10 seconds via AJAX
+- **Intelligent caching** with Redis to reduce API load while maintaining freshness
+- **WebSocket ready** infrastructure for future WebSocket implementation
+- **Slippage updates** with real-time market impact calculations
+
+## 🎨 Design
+
+The platform features a Nintendo-inspired design with:
+- **Gradient backgrounds** with smooth color transitions
+- **Brand colors** using Jupiter purple, Hyperliquid blue, Solana green
+- **Retro aesthetics** with gaming-inspired UI elements
+- **Responsive layout** working on desktop, tablet, and mobile devices
+- **Color-coded slippage** with green/orange/red indicators for market impact
+
+## 🧪 Testing
+
+The platform includes comprehensive testing:
+- **Unit tests** for slippage models with edge case validation
+- **Integration tests** for bridge simulation and API interactions
+- **Performance tests** for Monte Carlo simulation speed
+
+  ---
+
+
+  
+- **Demo scripts** showing real-world usage examples
+
