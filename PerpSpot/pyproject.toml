@@ -1,0 +1,22 @@
+[project]
+name = "perp-spot"
+version = "0.1.0"
+description = "Add your description here"
+requires-python = ">=3.11"
+dependencies = [
+    "apscheduler>=3.11.0",
+    "cachetools>=6.2.0",
+    "email-validator>=2.3.0",
+    "flask>=3.1.2",
+    "flask-sqlalchemy>=3.1.1",
+    "gunicorn>=23.0.0",
+    "hyperliquid-python-sdk>=0.18.0",
+    "numpy>=2.3.2",
+    "pandas>=2.3.2",
+    "psycopg2-binary>=2.9.10",
+    "redis>=6.4.0",
+    "requests>=2.32.5",
+    "sqlalchemy>=2.0.43",
+    "websockets>=15.0.1",
+    "werkzeug>=3.1.3",
+]

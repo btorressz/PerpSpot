@@ -1,0 +1,651 @@
+/* Custom CSS for Crypto Arbitrage Platform */
+
+:root {
+    /* Jupiter Colors */
+    --jupiter-primary: #00d4aa;
+    --jupiter-secondary: #0066ff;
+    
+    /* Hyperliquid Colors */
+    --hyperliquid-primary: #ff6b35;
+    --hyperliquid-secondary: #ff9500;
+    
+    /* Solana Colors */
+    --solana-primary: #9945ff;
+    --solana-secondary: #14f195;
+    
+    /* Custom gradient */
+    --gradient-bg: linear-gradient(135deg, #00d4aa 0%, #0066ff 25%, #ff6b35 50%, #ff9500 75%, #9945ff 100%);
+    --gradient-bg-dark: linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 102, 255, 0.1) 25%, rgba(255, 107, 53, 0.1) 50%, rgba(255, 149, 0, 0.1) 75%, rgba(153, 69, 255, 0.1) 100%);
+}
+
+body {
+    background: #0a0a0b;
+    background-image: var(--gradient-bg-dark);
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--jupiter-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--jupiter-secondary);
+}
+
+/* Navigation */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.5rem;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar {
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.9) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Cards */
+.card {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Make section labels lighter and more visible */
+.card-title {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    font-size: 1.1rem !important;
+}
+
+.card-header .card-title {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Additional label improvements */
+h5.card-title, h6.card-title {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-weight: 600 !important;
+}
+
+/* Make icons in headers more visible */
+.card-header i {
+    color: var(--jupiter-primary) !important;
+    opacity: 0.9;
+}
+
+/* Improve text contrast */
+.text-muted {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Chart Performance Optimizations */
+.card-body canvas {
+    will-change: transform;
+    contain: layout style paint;
+    max-height: 250px;
+}
+
+#spread-chart, #funding-chart {
+    max-height: 180px !important;
+}
+
+/* Smooth scrolling performance */
+.container-fluid {
+    contain: layout style;
+}
+
+.card-header {
+    background: rgba(255, 255, 255, 0.02) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    font-weight: 600;
+}
+
+/* Statistics Cards */
+.stat-card {
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 212, 170, 0.2);
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    background: var(--gradient-bg);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-top: 0.5rem;
+}
+
+/* Price Cards */
+.price-card {
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.price-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 12px;
+    padding: 2px;
+    background: var(--gradient-bg);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: subtract;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.price-card:hover::before {
+    opacity: 1;
+}
+
+.jupiter-card {
+    border-color: var(--jupiter-primary);
+}
+
+.hyperliquid-card {
+    border-color: var(--hyperliquid-primary);
+}
+
+.spread-card {
+    border-color: var(--solana-primary);
+}
+
+.price-source {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.price-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.jupiter-card .price-value {
+    color: var(--jupiter-primary);
+}
+
+.hyperliquid-card .price-value {
+    color: var(--hyperliquid-primary);
+}
+
+.spread-card .price-value {
+    color: var(--solana-primary);
+}
+
+.price-change {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Profit Simulation */
+.profit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.profit-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--jupiter-primary), var(--jupiter-secondary));
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, var(--jupiter-secondary), var(--jupiter-primary));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 212, 170, 0.4);
+}
+
+.btn-outline-primary {
+    border: 2px solid var(--jupiter-primary);
+    color: var(--jupiter-primary);
+    background: transparent;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary.active {
+    background: var(--jupiter-primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(0, 212, 170, 0.3);
+}
+
+.btn-outline-warning {
+    border: 2px solid var(--hyperliquid-primary);
+    color: var(--hyperliquid-primary);
+    background: transparent;
+}
+
+.btn-outline-warning:hover,
+.btn-outline-warning.active {
+    background: var(--hyperliquid-primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(255, 107, 53, 0.3);
+}
+
+.btn-outline-success {
+    border: 2px solid var(--solana-primary);
+    color: var(--solana-primary);
+    background: transparent;
+}
+
+.btn-outline-success:hover,
+.btn-outline-success.active {
+    background: var(--solana-primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(153, 69, 255, 0.3);
+}
+
+.btn-success {
+    background: linear-gradient(45deg, var(--solana-secondary), var(--solana-primary));
+    color: white;
+}
+
+.btn-success:hover {
+    background: linear-gradient(45deg, var(--solana-primary), var(--solana-secondary));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(20, 241, 149, 0.4);
+}
+
+/* Form Controls */
+.form-control,
+.form-select {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border-radius: 8px;
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    border-color: var(--jupiter-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 212, 170, 0.25) !important;
+}
+
+.form-control::placeholder {
+    color: #a0a0a0;
+}
+
+.form-select option {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+/* Table */
+.table-dark {
+    --bs-table-bg: rgba(255, 255, 255, 0.02);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.04);
+    --bs-table-hover-bg: rgba(0, 212, 170, 0.1);
+    --bs-table-border-color: rgba(255, 255, 255, 0.1);
+}
+
+.table-dark td,
+.table-dark th {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Liquidity Score */
+.liquidity-score {
+    display: inline-block;
+    width: 60px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.liquidity-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff4444, #ffaa00, #44ff44);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* Spread Indicators */
+.spread-positive {
+    color: var(--solana-secondary) !important;
+}
+
+.spread-negative {
+    color: var(--hyperliquid-primary) !important;
+}
+
+.spread-neutral {
+    color: #a0a0a0 !important;
+}
+
+/* Strategy Badges */
+.strategy-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.strategy-long-short {
+    background: linear-gradient(45deg, var(--jupiter-primary), var(--hyperliquid-primary));
+    color: white;
+}
+
+.strategy-short-long {
+    background: linear-gradient(45deg, var(--hyperliquid-primary), var(--jupiter-primary));
+    color: white;
+}
+
+/* Animation Classes */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.bounce {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-5px); }
+    60% { transform: translateY(-3px); }
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Status Indicators */
+.status-connected {
+    color: var(--solana-secondary);
+}
+
+.status-disconnected {
+    color: var(--hyperliquid-primary);
+}
+
+.status-loading {
+    color: var(--jupiter-primary);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .stat-value {
+        font-size: 1.5rem;
+    }
+    
+    .price-value {
+        font-size: 1.4rem;
+    }
+    
+    .price-card {
+        margin-bottom: 1rem;
+    }
+    
+    .btn-group {
+        flex-direction: column;
+    }
+    
+    .btn-group .btn {
+        border-radius: 8px !important;
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* Tooltip Styles */
+.tooltip-inner {
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Loading States */
+.loading-shimmer {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Success/Error States */
+.alert-success {
+    background: rgba(20, 241, 149, 0.1);
+    border: 1px solid var(--solana-secondary);
+    color: var(--solana-secondary);
+}
+
+.alert-danger {
+    background: rgba(255, 107, 53, 0.1);
+    border: 1px solid var(--hyperliquid-primary);
+    color: var(--hyperliquid-primary);
+}
+
+.alert-info {
+    background: rgba(0, 212, 170, 0.1);
+    border: 1px solid var(--jupiter-primary);
+    color: var(--jupiter-primary);
+}
+
+/* Live Price Dashboard */
+.live-price-card {
+    background: linear-gradient(135deg, #2a2d3a 0%, #1a1d26 100%);
+    border: 1px solid #383b47;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.live-price-card:hover {
+    border-color: #007bff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+}
+
+.live-price-card.positive-spread {
+    border-left: 4px solid #28a745;
+    background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, #1a1d26 100%);
+}
+
+.live-price-card.negative-spread {
+    border-left: 4px solid #dc3545;
+    background: linear-gradient(135deg, rgba(220, 53, 69, 0.05) 0%, #1a1d26 100%);
+}
+
+.live-price-card .token-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.live-price-card .token-symbol {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.live-price-card .token-name {
+    font-size: 11px;
+    color: #8e9297;
+    text-transform: uppercase;
+}
+
+.live-price-card .spread-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+}
+
+.live-price-card .price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.live-price-card .price-label {
+    font-size: 12px;
+    color: #8e9297;
+    font-weight: 500;
+}
+
+.live-price-card .price-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.live-price-card .jupiter-price {
+    color: #ff9500;
+}
+
+.live-price-card .hyperliquid-price {
+    color: #00d4aa;
+}
+
+.live-price-card .funding-rate {
+    font-size: 11px;
+    color: #8e9297;
+    text-align: center;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid #383b47;
+}
+
+/* Slippage Controls Styling */
+.form-range {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    height: 6px;
+}
+
+.form-range::-webkit-slider-thumb {
+    background: var(--bs-warning);
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.4);
+}
+
+.form-range::-moz-range-thumb {
+    background: var(--bs-warning);
+    border: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 2px 6px rgba(255, 193, 7, 0.4);
+}
+
+.advanced-controls {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.progress {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress .progress-bar {
+    transition: width 0.5s ease, background-color 0.3s ease;
+}
+
+#slippage-alert {
+    font-size: 0.85rem;
+    border-left: 3px solid var(--bs-warning);
+    background: rgba(255, 193, 7, 0.1) !important;
+}
+
+.form-check-input:checked {
+    background-color: var(--bs-warning);
+    border-color: var(--bs-warning);
+}
+
+/* Slippage Chart */
+#slippage-chart {
+    max-height: 200px !important;
+}
