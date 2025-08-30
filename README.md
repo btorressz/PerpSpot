@@ -749,12 +749,13 @@ Pre-configured strategies optimized for different market conditions:
 - **Solana Slot Subscription** (RPC-Based Ticker Refresh)
 - **Cross-Market Latency Replay Mode**
 - **Stress Test Mode**
+- **Demo scripts** showing real-world usage examples
+
 
 ---
 
 
 ##  My goal of this project
 
-- I set out to research whether Jupiter’s Solana spot APIs and Hyperliquid’s perpetuals can be bridged to support a unified arbitrage UI/UX and reliable cross protocol execution. The objective was to validate technical feasibility — asset mapping, order semantics, latency and rate-limit behavior, funding rate effects, and how slippage/market-impact erode opportunities — and to prototype a modeling layer that predicts execution success. I implemented a normalized price pipeline, a Monte-Carlo latency simulator, slippage & funding impact estimators, and a deterministic playbook generator so the frontend can present a single “execute” workflow while the backend maps steps to spot/perp legs. This repo is research / proof-of-concept focused (demo mode enabled)  not production-ready  and is intended to show feasibility, surface key risks, and produce reproducible simulations and analytics.
-- **Demo scripts** showing real-world usage examples
+- I set out to research whether Jupiter’s Solana spot APIs and Hyperliquid’s perpetuals can be bridged to support a unified arbitrage UI/UX and reliable cross protocol execution. The objective was to validate technical feasibility — asset mapping, order semantics, latency and rate-limit behavior, funding rate effects, and how slippage/market-impact erode opportunities — and to prototype a modeling layer that predicts execution success. I implemented a normalized price pipeline, a Monte-Carlo latency simulator, slippage & funding impact estimators, and a deterministic playbook generator so the frontend can present a single “execute” workflow while the backend maps steps to spot/perp legs. This repo is research / proof-of-concept focused (demo mode enabled)  not production-ready  and is intended to show feasibility, surface key risks, and produce reproducible simulations and analytics. However I am open to feedback and possible collaboration. :) 
 
