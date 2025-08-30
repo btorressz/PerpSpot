@@ -400,7 +400,7 @@ slippage = k × sqrt(trade_size / orderbook_depth)
 - **Token-specific depth**: Different liquidity assumptions per asset
 
 #### **Almgren-Chriss Style Estimation**
-- **Temporary Impact**: a × (size/depth)^b with a=0.3, b=0.6
+- **Temporary Impact**: a × (size/depth)^b with a=0.3, b=0.6  **(Temporary impact is calculated as 0.3 multiplied by the size or depth raised to the 0.6 power)**
 - **Permanent Impact**: Separate modeling for lasting market effects
 - **Execution Cost**: Combined temporary + permanent impact estimation
 
