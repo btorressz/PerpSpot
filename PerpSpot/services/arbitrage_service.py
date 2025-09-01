@@ -355,7 +355,7 @@ class ArbitrageService:
         import random
         
         base_prices = {
-            'SOL': 190.00,
+            'SOL': 150.00,
             'ETH': 3500.00,
             'BTC': 100000.00,
             'JUP': 0.40,
